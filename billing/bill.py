@@ -54,8 +54,9 @@ class App():
             self.each_price[i]=Label(root,text="0 Rs",font=('Arial',23))
             self.each_price[i].place(x=950,y=self.y_value)
             self.y_value=self.y_value+60
-        self.clr=Button(root,text="Clear",font=('Arial',23),command=self.calculate).place(x=600,y=900)
-        self.cal=Button(root,text="Total=",font=('Arial',23),command=self.calculate).place(x=760,y=900)
+        self.ext=Button(root,text="Exit",font=('Arial',23),bg="red",fg="black",command=self.close).place(x=50,y=900)
+        self.clr=Button(root,text="Clear",font=('Arial',23),bg="yellow",fg="black",command=self.clear).place(x=600,y=900)
+        self.cal=Button(root,text="Total=",font=('Arial',23),bg="green",fg="black",command=self.calculate).place(x=760,y=900)
         self.total_price=Label(root,text="0 RS",font=('Arial',27),width=9)
         self.total_price.place(x=900,y=900)
         ##########-----------line-------------##########
@@ -103,7 +104,19 @@ class App():
                     self.each_price[i].config(text="0 Rs")
                     self.qty[i].set(0)
                     self.dis[i].set(0)
-
+    def close(self):
+        exit()
+    def clear(self):
+        for i in range(len(self.veg)):
+            self.each_price[i].config(text="0 Rs")
+            self.qty[i].set(0)
+            self.dis[i].set(0)
+        self.c_name.set('')
+        self.c_phno.set('')
+        self.c_add.set('')
+        self.bill_text.config(state='normal')
+        self.bill_text.delete("13.0","end")
+        self.bill_text.config(state='disabled')
 if __name__ == "__main__":
     win=tk.Tk()
     #title
