@@ -67,7 +67,7 @@ class App():
         self.bill_text.insert("insert", "\n\nGreen Vegetables Market\n")
         self.bill_text.insert("end","One and only market where you can find Organic Vegetables\nSrikakulam, Andhrapradesh, 532484\nContact 9900887766\nGST no:X1234567890XYZ")
         self.bill_text.tag_add("head", "3.0", "3.23")
-        self.bill_text.tag_add("rest", "4.0", "8.0")
+        self.bill_text.tag_add("rest", "4.0", "7.22")
         self.bill_text.tag_config("head", font=('Arial',30,'bold','underline'),justify='center')
         self.bill_text.tag_config("rest", font=('Arial',15),justify='center')
         self.bill_text.config(state='disabled',width=75,height=38)
@@ -78,15 +78,15 @@ class App():
             tot=0.0
             line=13.0
             self.bill_text.config(state='normal')
-            self.bill_text.delete(str(line),"end")
+            self.bill_text.delete("8.0","end")
             for i in range(len(self.veg)):
                 each_tot=0.0
                 if self.ck[i].get()==1 and self.qty[i].get()>0:
-                    self.bill_text.insert("end", "\n\nCustomer Details"+"\n"+"\tCustmor Name: "+self.c_name.get()+
-                                            "\n"+"\tContact number: "+self.c_phno.get()+"\n"+"\tAddress: "+self.c_add.get())
-                    self.bill_text.tag_add("details_head", "9.0","9.16")
+                    self.bill_text.insert("end", "\nCustomer Details\n\tCustmor Name: "+self.c_name.get()+
+                                            "\n\tContact number: "+self.c_phno.get()+"\n\tAddress: "+self.c_add.get())
+                    self.bill_text.tag_add("details_head", "8.0","8.16")
                     self.bill_text.tag_config("details_head", font=('Arial',20,'underline'),justify='center')
-                    self.bill_text.tag_add("details_body", "10.0","12.50")
+                    self.bill_text.tag_add("details_body", "9.0","11.50")
                     self.bill_text.tag_config("details_body", font=('Arial',15),justify='left')
                     self.bill_text.insert("end", "\n\n"+"\t"+"item"+"\t\t"+"qty"+"\t\t"+"dis"+"\t\t"+"Total\n")
                     each_tot=each_tot+self.veg_price[i]*self.qty[i].get()
@@ -104,26 +104,31 @@ class App():
                     self.each_price[i].config(text="0 Rs")
                     self.qty[i].set(0)
                     self.dis[i].set(0)
+            self.bill_text.config(state='normal')
+            self.bill_text.insert("end", "\n\n\t\t\t\t\t   GST(18%) :"+"{:.2f}".format(((tot)/100)*18))
+            self.bill_text.insert("end", "\n\n\t\t\t\t\t  Total amt :"+"{:.2f}".format((tot+((tot)/100)*18)))
+            self.bill_text.config(state='disabled')         
     def close(self):
         exit()
     def clear(self):
         for i in range(len(self.veg)):
+            self.ck[i].set(0)
             self.each_price[i].config(text="0 Rs")
             self.qty[i].set(0)
             self.dis[i].set(0)
-        self.c_name.set('')
-        self.c_phno.set('')
-        self.c_add.set('')
         self.bill_text.config(state='normal')
-        self.bill_text.delete("13.0","end")
+        self.bill_text.delete("8.0","end")
         self.bill_text.config(state='disabled')
     def save_bill(self):
-        import datetime 
+        import datetime
+        from tkinter import messagebox
         current_time = datetime.datetime.now() 
         self.file_name=str(self.c_name)+str(current_time)
         self.file=open(self.file_name+".txt","w")
         self.file.write(self.bill_text.get("1.0","end"))
+        self.file.close()
         self.clear()
+        messagebox.showinfo("showinfo", "Saved Successfully")
 if __name__ == "__main__":
     win=tk.Tk()
     #title
