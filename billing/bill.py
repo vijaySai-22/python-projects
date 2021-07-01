@@ -72,7 +72,7 @@ class App():
         self.bill_text.tag_config("rest", font=('Arial',15),justify='center')
         self.bill_text.config(state='disabled',width=75,height=38)
         self.bill_text.place(x=1180,y=240)
-        complete_and_save=Button(root,text="Complete and Save",font=('Arial',23)).place(x=1500,y=900)
+        self.complete_and_save=Button(root,text="Complete and Save",font=('Arial',23),command=self.save_bill).place(x=1500,y=900)
     def calculate(self):
         if self.c_name.get()!='' and self.c_phno.get()!='' and self.c_add.get()!='':
             tot=0.0
@@ -117,6 +117,13 @@ class App():
         self.bill_text.config(state='normal')
         self.bill_text.delete("13.0","end")
         self.bill_text.config(state='disabled')
+    def save_bill(self):
+        import datetime 
+        current_time = datetime.datetime.now() 
+        self.file_name=str(self.c_name)+str(current_time)
+        self.file=open(self.file_name+".txt","w")
+        self.file.write(self.bill_text.get("1.0","end"))
+        self.clear()
 if __name__ == "__main__":
     win=tk.Tk()
     #title
