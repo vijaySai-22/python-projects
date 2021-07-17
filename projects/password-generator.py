@@ -11,8 +11,22 @@ class App:
         self.n=tk.StringVar()
         self.n_Entry=Entry(f1,textvariable=self.n).grid(row=0,column=1,padx=10,pady=10)
         Button(f1,text="Generate",command=self.gen).grid(row=1,column=0,columnspan=2)
+
+        self.pswrd=Text(f1)
     def gen(self):
-        pass
+        if self.n.get().isnumeric() and int(self.n.get())>=4 and int(self.n.get())<=12:
+            self.ucAlpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self.lcAlpha="abcdefghijklmnopqrstuvwxyz"
+            self.digits = "0123456789"
+            self.special = "!@#$%^&*()[]}{"
+            self.raw=[self.ucAlpha,self.lcAlpha,self.digits,self.special]
+            self.pw=''
+            
+            self.pw=self.pw+random.choice(self.ucAlpha)+random.choice(self.lcAlpha)+random.choice(self.digits)+random.choice(self.special)
+            
+            for i in range(int(self.n.get())-4):
+                self.pw=self.pw+random.choice(random.choice(self.raw))
+            print(self.pw)
 if __name__=='__main__':
     win=tk.Tk()
     #title
