@@ -1,0 +1,3 @@
+# Python projects are stored here...
+## Using python3 and Tkinter
+### And example codes stored as temp-codes.
