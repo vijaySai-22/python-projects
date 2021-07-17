@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 import random
+import pyperclip as pc
 class App:
     def __init__(self,root):
         Label(root,text="Password Generator").pack(fill=X)
@@ -14,6 +15,7 @@ class App:
         Button(f1,text="Generate",command=self.gen).grid(row=1,column=0,columnspan=2)
 
         self.pswrd=Text(f1)
+        self.cpyBtn=Button(f1,text="Copy",command=self.cpy)
     def gen(self):
         if self.n.get().isnumeric() and int(self.n.get())>=4 and int(self.n.get())<=12:
             self.ucAlpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -27,11 +29,14 @@ class App:
             
             for i in range(int(self.n.get())-4):
                 self.pw=self.pw+random.choice(random.choice(self.raw))
+            #text field of password
             self.pswrd.config(state='normal')
             self.pswrd.delete('0.0','end')
             self.pswrd.insert('insert',self.pw)
             self.pswrd.config(width=12,height=1,state='disabled')
-            self.pswrd.grid(row=2,column=0,columnspan=2)
+            self.pswrd.grid(row=2,column=0)
+            #cpy btn
+            self.cpyBtn.grid(row=2,column=1)
         elif self.n.get()=='':
             pass
         else:
@@ -42,7 +47,10 @@ class App:
             self.pswrd.grid(row=2,column=0,columnspan=2)
             #msgbox
             messagebox.showwarning("Warning", "Enter valid input")
-
+    def cpy(self):
+        #for copy button
+        cpyText = self.pw
+        pc.copy(cpyText)
 if __name__=='__main__':
     win=tk.Tk()
     #title
