@@ -26,7 +26,11 @@ class App:
             
             for i in range(int(self.n.get())-4):
                 self.pw=self.pw+random.choice(random.choice(self.raw))
-            print(self.pw)
+            self.pswrd.config(state='normal')
+            self.pswrd.delete('0.0','end')
+            self.pswrd.insert('insert',self.pw)
+            self.pswrd.config(width=12,height=2,state='disabled')
+            self.pswrd.grid(row=2,column=0,columnspan=2)
 if __name__=='__main__':
     win=tk.Tk()
     #title
