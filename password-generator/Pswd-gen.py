@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 import random
-#import pyperclip as pc
+import pyperclip as pc
 class App:
     def __init__(self,root):
         Label(root,text="Random Password Generator").pack(fill=X)
