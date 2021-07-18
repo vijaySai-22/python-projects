@@ -1,4 +1,4 @@
-# Password Generator Using Pythonand Tkinter
+# Password Generator Using Python and Tkinter
 
 ## 1) It generates random password based user requirement
 ![](imgs/pswd1.png)
