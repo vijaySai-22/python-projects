@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 import random
 class App:
     def __init__(self,root):
@@ -25,8 +26,18 @@ class App:
                 self.pswrd.config(state='normal')
                 self.pswrd.delete('0.0','end')
                 self.pswrd.insert('insert',self.pw)
-                self.pswrd.config(width=12,height=2,state='disabled')
+                self.pswrd.config(width=12,height=1,state='disabled')
                 self.pswrd.grid(row=2,column=0,columnspan=2)
+        elif self.n.get()=='':
+            pass
+        else:
+            self.pswrd.config(state='normal')
+            self.pswrd.delete('0.0','end')
+            self.pswrd.insert('insert','Enter valid input(eg: 4,5 upto 12)')
+            self.pswrd.config(width=35,height=1,state='disabled')
+            self.pswrd.grid(row=2,column=0,columnspan=2)
+            #msgbox
+            messagebox.showwarning("Warning", "Enter valid input")
 if __name__=='__main__':
     win=tk.Tk()
     #title
