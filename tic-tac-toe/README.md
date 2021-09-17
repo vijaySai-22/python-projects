@@ -7,4 +7,5 @@
 ### - Retart button after game won or draw
 
 ## Screen shots
-![](imgs/app.png)
+<img src='imgs/app.png' width='250' height='300'> <img src='imgs/app2.png' width='250' height='300'>
+<img src='imgs/won.png' width='250' height='300'> <img src='imgs/restart.png' width='250' height='300'>
