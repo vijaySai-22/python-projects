@@ -45,7 +45,7 @@ def rename():
         lb.insert(ANCHOR,data)
         rEntry.delete(0,'end')
 #entry for text
-entry=Entry(frame1,width=20,font=('',13),bg='black',fg='white')
+entry=Entry(frame1,width=20,font=('',13),bg='black',fg='white',insertbackground='white'))
 entry.pack(side=LEFT,fill=BOTH,pady=20)
 #button to clear
 button=Button(frame1,text='Clear',bg='yellow',fg='black',command=clear)
@@ -56,7 +56,7 @@ button.pack(side=RIGHT,fill=BOTH,pady=20)
 #button to remove
 rmv=Button(root,text='remove',bg='red',fg='white',command=remove).pack(pady=20)
 #rename
-rEntry=Entry(rFrame,width=20,font=('',13),bg='black',fg='white')
+rEntry=Entry(rFrame,width=20,font=('',13),bg='black',fg='white',insertbackground='white'))
 rEntry.pack(side=LEFT,fill=BOTH,padx=20)
 rBtn=Button(rFrame,text='Rename',bg='blue',fg='white',command=rename)
 rBtn.pack(side=RIGHT,fill=BOTH,padx=20)
